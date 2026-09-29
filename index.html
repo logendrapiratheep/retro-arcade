@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro Arcade Hub</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👾</text></svg>">
+  <meta name="description" content="A neon retro arcade with Snake, Tic-Tac-Toe, and Memory Match — built with HTML, CSS, and JavaScript.">
+  
+  <!-- Pixel font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- SCREEN 1: PRESS START -->
+  <section id="start-screen" class="screen active">
+    <h1 class="logo">RETRO<br>ARCADE</h1>
+    <button id="start-btn" class="blink">PRESS START</button>
+    <p class="small">PRESS ENTER OR CLICK</p>
+  </section>
+
+  <!-- SCREEN 2: GAME HUB -->
+  <section id="hub-screen" class="screen">
+    <h2>SELECT GAME</h2>
+
+    <div class="cards">
+      <button class="card" data-game="snake">
+        <span class="icon">🐍</span>
+        <span>SNAKE</span>
+      </button>
+      <button class="card" data-game="tictactoe">
+        <span class="icon">❌</span>
+        <span>TIC-TAC-TOE</span>
+      </button>
+      <button class="card" data-game="memory">
+        <span class="icon">🃏</span>
+        <span>MEMORY</span>
+      </button>
+    </div>
+
+    <div class="scoreboard">
+      <h3>HIGH SCORES</h3>
+      <ul>
+        <li>SNAKE <span id="hs-snake">0</span></li>
+        <li>TIC-TAC-TOE WINS <span id="hs-tictactoe">0</span></li>
+        <li>MEMORY (FEWEST MOVES) <span id="hs-memory">0</span></li>
+      </ul>
+    </div>
+  </section>
+
+    <!-- SCREEN 3: TIC-TAC-TOE -->
+  <section id="tictactoe-screen" class="screen">
+    <h2>TIC-TAC-TOE</h2>
+    <p id="ttt-status" class="status">PLAYER X'S TURN</p>
+
+    <div class="ttt-board" id="ttt-board">
+      <button class="ttt-cell" data-index="0"></button>
+      <button class="ttt-cell" data-index="1"></button>
+      <button class="ttt-cell" data-index="2"></button>
+      <button class="ttt-cell" data-index="3"></button>
+      <button class="ttt-cell" data-index="4"></button>
+      <button class="ttt-cell" data-index="5"></button>
+      <button class="ttt-cell" data-index="6"></button>
+      <button class="ttt-cell" data-index="7"></button>
+      <button class="ttt-cell" data-index="8"></button>
+    </div>
+
+    <div class="btn-row">
+      <button class="menu-btn" id="ttt-restart">RESTART</button>
+      <button class="menu-btn" id="ttt-back">BACK TO MENU</button>
+    </div>
+  </section>
+
+    <!-- SCREEN 4: MEMORY MATCH -->
+  <section id="memory-screen" class="screen">
+    <h2>MEMORY MATCH</h2>
+    <p id="memory-status" class="status">MOVES: 0</p>
+
+    <div class="memory-board" id="memory-board"></div>
+
+    <div class="btn-row">
+      <button class="menu-btn" id="memory-restart">RESTART</button>
+      <button class="menu-btn" id="memory-back">BACK TO MENU</button>
+    </div>
+  </section>
+
+    <!-- SCREEN 5: SNAKE -->
+  <section id="snake-screen" class="screen">
+    <h2>SNAKE</h2>
+    <p id="snake-status" class="status">SCORE: 0</p>
+
+    <canvas id="snake-canvas" width="400" height="400"></canvas>
+
+    <p class="small">USE ARROW KEYS OR WASD</p>
+
+    <div class="btn-row">
+      <button class="menu-btn" id="snake-restart">RESTART</button>
+      <button class="menu-btn" id="snake-back">BACK TO MENU</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

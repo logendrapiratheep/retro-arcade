@@ -1,0 +1,228 @@
+/* ---------- Colors as variables (change them anytime!) ---------- */
+:root {
+  --bg: #0b0221;
+  --pink: #ff2bd6;
+  --cyan: #00f0ff;
+  --yellow: #ffe600;
+  --text: #e8e8ff;
+}
+
+/* ---------- Reset + base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Press Start 2P', monospace;
+  /* Neon grid background */
+  background-image:
+    linear-gradient(rgba(0,240,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,240,255,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  overflow-x: hidden;
+}
+
+/* CRT scanline overlay for the retro TV feel */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) 2px,
+    rgba(0,0,0,0.25) 3px
+  );
+}
+
+/* ---------- Screens (only .active is visible) ---------- */
+.screen {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px;
+  text-align: center;
+}
+.screen.active { display: flex; }
+
+/* ---------- Neon logo ---------- */
+.logo {
+  font-size: clamp(32px, 9vw, 80px);
+  line-height: 1.3;
+  color: var(--cyan);
+  text-shadow:
+    0 0 8px var(--cyan),
+    0 0 24px var(--cyan),
+    4px 4px 0 var(--pink);
+}
+
+/* ---------- Buttons ---------- */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#start-btn {
+  font-size: 20px;
+  padding: 16px 28px;
+  color: var(--yellow);
+  background: transparent;
+  border: 4px solid var(--yellow);
+  box-shadow: 0 0 16px var(--yellow);
+}
+#start-btn:hover { background: var(--yellow); color: var(--bg); }
+
+/* Blinking animation */
+.blink { animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { to { visibility: hidden; } }
+
+.small { font-size: 10px; opacity: 0.7; }
+
+/* ---------- Hub ---------- */
+h2 {
+  color: var(--pink);
+  text-shadow: 0 0 12px var(--pink);
+  font-size: clamp(20px, 5vw, 36px);
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.card {
+  width: 200px;
+  padding: 24px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text);
+  background: rgba(255,255,255,0.04);
+  border: 4px solid var(--cyan);
+  box-shadow: 0 0 12px var(--cyan), inset 0 0 12px rgba(0,240,255,0.2);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.card .icon { font-size: 48px; }
+.card:hover {
+  transform: translateY(-8px) scale(1.05);
+  border-color: var(--pink);
+  box-shadow: 0 0 24px var(--pink), inset 0 0 12px rgba(255,43,214,0.3);
+}
+
+/* ---------- Scoreboard ---------- */
+.scoreboard {
+  border: 4px solid var(--yellow);
+  padding: 20px 24px;
+  box-shadow: 0 0 12px var(--yellow);
+  width: min(100%, 520px);
+}
+.scoreboard h3 { color: var(--yellow); margin-bottom: 16px; font-size: 14px; }
+.scoreboard ul { list-style: none; font-size: 10px; line-height: 2.4; }
+.scoreboard li { display: flex; justify-content: space-between; gap: 12px; }
+.scoreboard li span { color: var(--cyan); }
+/* ---------- Tic-Tac-Toe ---------- */
+.status {
+  color: var(--yellow);
+  font-size: 14px;
+  text-shadow: 0 0 8px var(--yellow);
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 90px);
+  grid-template-rows: repeat(3, 90px);
+  gap: 8px;
+}
+
+.ttt-cell {
+  background: rgba(255,255,255,0.04);
+  border: 3px solid var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+  color: var(--pink);
+  font-size: 36px;
+  font-family: 'Press Start 2P', monospace;
+  text-shadow: 0 0 8px var(--pink);
+}
+
+.ttt-cell:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.win-cell {
+  background: var(--pink) !important;
+  color: var(--bg) !important;
+  text-shadow: none !important;
+}
+
+.btn-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-btn {
+  font-size: 10px;
+  padding: 12px 16px;
+  color: var(--cyan);
+  background: transparent;
+  border: 3px solid var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+.menu-btn:hover { background: var(--cyan); color: var(--bg); }
+/* ---------- Memory Match ---------- */
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  gap: 10px;
+}
+
+.memory-card {
+  width: 70px;
+  height: 70px;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--yellow);
+  background: rgba(255,255,255,0.04);
+  border: 3px solid var(--pink);
+  box-shadow: 0 0 8px var(--pink);
+  transition: transform 0.2s;
+}
+
+.memory-card:hover { transform: scale(1.05); }
+
+.memory-card.flipped {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+.memory-card.matched {
+  border-color: var(--yellow);
+  box-shadow: 0 0 12px var(--yellow);
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Stack on very small screens */
+@media (max-width: 380px) {
+  .memory-board { grid-template-columns: repeat(3, 70px); }
+}
+/* ---------- Snake ---------- */
+#snake-canvas {
+  border: 4px solid var(--cyan);
+  box-shadow: 0 0 16px var(--cyan);
+  background: var(--bg);
+  max-width: 100%;
+  height: auto;
+}
